@@ -1,0 +1,10 @@
+#Python
+_pycache_/
+*.pyc
+
+#Virtual enviroment
+venv/
+.venv/
+
+#PyChar files
+.idea/
