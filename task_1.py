@@ -1,7 +1,7 @@
 def caching_fibonacci():
     cache = {}
 
-    def fibonacci(n):
+    def fibonacci(n: int):
         if n in cache:
             return cache[n]
 
