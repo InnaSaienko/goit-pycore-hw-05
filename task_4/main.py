@@ -13,7 +13,6 @@ def read_input():
 
 
 def process_command(command, args, contacts):
-    print(f"command: {command}")
     match command:
         case "close" | "exit":
             print(f"Goodbye!")
@@ -21,21 +20,12 @@ def process_command(command, args, contacts):
         case "hello":
             print(f"How can I help you?")
         case "add":
-            if len(args) != 2:
-                print("Invalid command.")
-                return True
             add_contact(args, contacts)
             print("Contact added.")
         case "change":
-            if len(args) != 2:
-                print("Invalid command.")
-                return True
             msg = "Contact updated." if change_contact(args, contacts) else "Contact not found."
             print(msg)
         case "phone":
-            if len(args) != 1:
-                print("Invalid command.")
-                return True
             phone = show_phone(args, contacts)
             msg = phone if phone else "Contact not found."
             print(msg)

@@ -1,7 +1,5 @@
 def parse_input(user_input):
     parts = user_input.split()
-    if len(parts) == 0:
-        raise ValueError("User input is empty")
     cmd, *args = parts
     cmd = cmd.lower()
     return cmd, args
