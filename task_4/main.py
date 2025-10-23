@@ -1,4 +1,17 @@
-from handlers import parse_input, add_contact, change_contact, show_phone, show_all
+import sys
+
+from handlers import parse_input, handle_exit, handle_add, handle_welcome, handle_show_phone, handle_invalid_command, \
+    handle_change_contact, handle_show_all_contacts
+
+COMMAND_TO_HANDLER = {
+    "close": handle_exit,
+    "exit": handle_exit,
+    "hello": handle_welcome,
+    "add": handle_add,
+    "change": handle_change_contact,
+    "phone": handle_show_phone,
+    "all": handle_show_all_contacts,
+}
 
 
 def read_input():
@@ -13,30 +26,8 @@ def read_input():
 
 
 def process_command(command, args, contacts):
-    match command:
-        case "close" | "exit":
-            print(f"Goodbye!")
-            return False
-        case "hello":
-            print(f"How can I help you?")
-        case "add":
-            add_contact(args, contacts)
-            print("Contact added.")
-        case "change":
-            msg = "Contact updated." if change_contact(args, contacts) else "Contact not found."
-            print(msg)
-        case "phone":
-            phone = show_phone(args, contacts)
-            msg = phone if phone else "Contact not found."
-            print(msg)
-        case "all":
-            contacts_str = show_all(contacts)
-            if contacts_str is None:
-                contacts_str = "No contacts found."
-            print(contacts_str)
-        case _:
-            print("Invalid command.")
-    return True
+    handler = COMMAND_TO_HANDLER[command]
+    return handler(args, contacts)
 
 
 def main():
