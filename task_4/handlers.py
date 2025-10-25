@@ -56,7 +56,6 @@ def handle_exit(_args, _contacts):
     raise StopIteration()
 
 
-@input_error
 def handle_welcome(_args, _contacts):
     print(f"How can I help you?")
 
